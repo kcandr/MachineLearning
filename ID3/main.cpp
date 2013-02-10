@@ -16,16 +16,18 @@ struct Node {
     string attrName;
     Node *left, *right;
 };
-Node *root = NULL;
 
 int read()
 {
     ifstream input("input.txt");
-    if(!input)
+    if ( !input ) {
         return 1;
+    }
+
     input >> attributeCount;
     input >> cortegeCount;
     string attrName;
+    
     for (int i = 0; i < attributeCount; ++i) {
         input >> attrName;
         attributeNames.push_back(attrName);
@@ -101,7 +103,7 @@ double entropy(const vector<vector<int> > &params, int target)
         return 0;
     };
     if ( negative == 0) {
-        return 1;
+        return 0;
     }
     return -pk * (log( pk ) / log( 2.0 )) - 
             nk * (log( nk ) / log( 2.0 ));
@@ -186,6 +188,7 @@ Node* learnID3(const vector<vector<int> > &params, vector<int> Q)
     
     return node;
 }
+
 void Show(Node *pTemp, int level)
 {
     if (pTemp != NULL)
@@ -201,7 +204,7 @@ int main()
 {
     read();
 
-    
+    Node *root = NULL;
     root = learnID3(table, Q);
     Show(root, 0);
 
