@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ID3", "ID3\ID3.vcxproj", "{754A9C0D-1794-4D3B-9E49-5E70968E9C3E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LogisticRegression", "LogisticRegression\LogisticRegression.vcxproj", "{8389AD05-AAC0-4233-9214-D16723DC181E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{754A9C0D-1794-4D3B-9E49-5E70968E9C3E}.Debug|Win32.Build.0 = Debug|Win32
 		{754A9C0D-1794-4D3B-9E49-5E70968E9C3E}.Release|Win32.ActiveCfg = Release|Win32
 		{754A9C0D-1794-4D3B-9E49-5E70968E9C3E}.Release|Win32.Build.0 = Release|Win32
+		{8389AD05-AAC0-4233-9214-D16723DC181E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8389AD05-AAC0-4233-9214-D16723DC181E}.Debug|Win32.Build.0 = Debug|Win32
+		{8389AD05-AAC0-4233-9214-D16723DC181E}.Release|Win32.ActiveCfg = Release|Win32
+		{8389AD05-AAC0-4233-9214-D16723DC181E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
