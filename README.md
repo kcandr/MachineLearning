@@ -13,6 +13,7 @@ ID3
 Logistic Regression
 ----------------
 
+	An implementation of the Logistic Regression algorithm with linear dependence Θ1*x1 + Θ2*x2 + ...+ Θn*xn
 ####Input data
         In first row of input file there is integer N, M number of attributes and row count.
         In second row there is N names of attributes.

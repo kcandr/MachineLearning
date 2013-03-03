@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <conio.h>
 #include <math.h>
 
 LogisticRegression::LogisticRegression(void)
@@ -19,16 +20,16 @@ int LogisticRegression::readData(const std::string& fileName)
     input >> cortegeCount;
     std::string attrName;
 
-    for ( int i = 0; i < attributeCount; ++i ) {
+    for ( unsigned int i = 0; i < attributeCount; ++i ) {
         input >> attrName;
         attributeNames.push_back( attrName );
     }
 
     double tmpData;
     std::vector<double> tmpVector;
-    for ( int i = 0; i < cortegeCount; ++i ) {
+    for ( unsigned int i = 0; i < cortegeCount; ++i ) {
         tmpVector.push_back(1.0);
-        for ( int j = 0; j < attributeCount - 1; ++j ) {
+        for ( unsigned int j = 0; j < attributeCount - 1; ++j ) {
             input >> tmpData;
             tmpVector.push_back( tmpData );
         }
@@ -64,7 +65,7 @@ double LogisticRegression::computeCost(std::vector<std::vector<double> > x,
     double J = 0;
     double m = y.size();
 
-    for ( unsigned int i = 0; i < data.size(); ++i ) {
+    for ( unsigned int i = 0; i < x.size(); ++i ) {
         h = sigmoid( computeDot( x[i], theta ) );
         J += y[i] * log( h ) + ( 1.0 - y[i] ) * log( 1.0 - h );
     }
@@ -74,8 +75,20 @@ double LogisticRegression::computeCost(std::vector<std::vector<double> > x,
 void LogisticRegression::printTheta()
 {
     std::cout << "Theta:" << std::endl;
-    for( unsigned int i = 0; i < this->theta.size(); ++i ) {
+    for( unsigned int i = 0; i < attributeCount; ++i ) {
         std::cout << this->theta[i] << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+void LogisticRegression::printData()
+{
+    std::cout << "Data:" << std::endl;
+    for( unsigned int i = 0; i < cortegeCount; ++i ) {
+        for( unsigned int j = 0; j < attributeCount; ++j ) {
+            std::cout << this->data[i][j] << " ";
+        }
+        std::cout << std::endl;
     }
     std::cout << std::endl;
 }
@@ -85,8 +98,13 @@ void LogisticRegression::gradientDescent(const double alpha, const int iteration
     std::vector<double> J_history;
     J_history.reserve(10000);
     int m = this->predictedData.size();
+    int percent = iterationsCount / 100;
 
-    for ( int i = 0; i < attributeCount; ++i ) {
+    printData();
+
+    int a = _getch();
+
+    for ( unsigned int i = 0; i < attributeCount; ++i ) {
         this->theta.push_back(0);
     }
 
@@ -94,7 +112,9 @@ void LogisticRegression::gradientDescent(const double alpha, const int iteration
 
     double J = 0;
     for(int iter = 0; iter < iterationsCount; iter++) {
-        std::cout << "Iter " << iter + 1 << ": ";
+        if ( iter % percent == 0 ) {
+            std::cout << "Iter " << iter + 1 << ": " << J << std::endl;
+        }
 
         // then compute the error and update the theta
         double error = 0;
@@ -118,7 +138,7 @@ void LogisticRegression::gradientDescent(const double alpha, const int iteration
         }
 
         J = computeCost(this->data, this->predictedData, this->theta);
-        std::cout << J << std::endl;
+        //std::cout << J << std::endl;
         J_history.push_back(J);
     }
     std::cout << std::endl;

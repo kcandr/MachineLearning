@@ -10,7 +10,7 @@ int main()
 
     lr.readData("input.txt");
     lr.gradientDescent(alpha, iters);
-
+    
     int n = _getch();
     return 1;
 }
